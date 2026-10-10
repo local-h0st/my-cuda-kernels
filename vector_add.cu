@@ -31,7 +31,7 @@ int main(void){
 
     int block_size = 256;
     int grid_size = (N + block_size -1) / block_size;
-    vecAdd<<grid_size, block_size>>(d_A, d_B, d_C, N);
+    vecAdd<<<grid_size, block_size>>>(d_A, d_B, d_C, N);
     cudaMemcpy(h_C, d_C, size, cudaMemcpyDeviceToHost);
 
     // verify
