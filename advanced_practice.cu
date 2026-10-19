@@ -45,7 +45,7 @@ int main(void) {
     float host_vec_dot_product_result = 0.0f;
     float* host_saxpy_result = (float*)malloc(size);
 
-    for (int i = 0, i < N, i++) {
+    for (int i = 0; i < N; i++) {
         host_A[i] = (float)i;
         host_B[i] = (float)(i+1);
     }
