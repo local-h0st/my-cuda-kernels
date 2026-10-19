@@ -66,7 +66,7 @@ int main(void) {
     int gridSize = (N + blockSize -1) / blockSize;
     vecDotProduct<<<gridSize, blockSize, blockSize * sizeof(float)>>>(device_A, device_B, N, device_vec_dot_product_result);
     saxpy<<<gridSize, blockSize, blockSize>>>(alpha, device_A, device_B, N, device_saxpy_result);
-    cudaMemcpy(host_vec_dot_product_result, device_vec_dot_product_result, sizeof(float), cudaMemcpyDeviceToHost);
+    cudaMemcpy(&host_vec_dot_product_result, device_vec_dot_product_result, sizeof(float), cudaMemcpyDeviceToHost);
     cudaMemcpy(host_saxpy_result, device_saxpy_result, size, cudaMemcpyDeviceToHost);
 
     // verify
