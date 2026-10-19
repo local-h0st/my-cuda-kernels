@@ -94,3 +94,6 @@ int main(void) {
 
 
 }
+
+// verification passed.
+// host_vec_dot_product_result: 384307110936051712.000000
