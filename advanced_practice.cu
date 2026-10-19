@@ -58,16 +58,16 @@ int main(void) {
     cudaMalloc(&device_saxpy_result, size);
 
     // transfer
-    cudaMemcpy(device_A, host_A, size, cudaMemcpyHostToDecice);
-    cudaMemcpy(device_B, host_B, size, cudaMemcpyHostToDecice);
+    cudaMemcpy(device_A, host_A, size, cudaMemcpyHostToDevice);
+    cudaMemcpy(device_B, host_B, size, cudaMemcpyHostToDevice);
 
     // kernel
     int blockSize = 256;
     int gridSize = (N + blockSize -1) / blockSize;
     vecDotProduct<<<gridSize, blockSize, blockSize * sizeof(float)>>>(device_A, device_B, N, device_vec_dot_product_result);
     saxpy<<<gridSize, blockSize, blockSize>>>(alpha, device_A, device_B, N, device_saxpy_result);
-    cudaMemcpy(host_vec_dot_product_result, device_vec_dot_product_result, sizeof(float), cudaMemcpyDeciceToHost);
-    cudaMemcpy(host_saxpy_result, device_saxpy_result, size, cudaMemcpyDeciceToHost);
+    cudaMemcpy(host_vec_dot_product_result, device_vec_dot_product_result, sizeof(float), cudaMemcpyDeviceToHost);
+    cudaMemcpy(host_saxpy_result, device_saxpy_result, size, cudaMemcpyDeviceToHost);
 
     // verify
     bool passed = false;
