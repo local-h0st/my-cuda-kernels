@@ -80,7 +80,7 @@ int main(void) {
     if (passed) {
         printf("verification passed.\n");
     }
-    printf("host_vec_dot_product_result: %d\n", host_vec_dot_product_result);
+    printf("host_vec_dot_product_result: %f\n", host_vec_dot_product_result);
 
     
     // recycle memory
