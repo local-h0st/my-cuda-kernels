@@ -70,10 +70,11 @@ int main(void) {
     cudaMemcpy(host_saxpy_result, device_saxpy_result, size, cudaMemcpyDeviceToHost);
 
     // verify
-    bool passed = false;
+    bool passed = true;
     for (int i = 0; i < N; i++) {
         if (fabsf(host_saxpy_result[i] - alpha * host_A[i] - host_B[i]) > 1e-5f) {
             printf("verify failed at index %d.\n", i);
+            passed = false;
             break;
         }
     }
